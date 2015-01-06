@@ -32,6 +32,10 @@ class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDeleg
         textView.insertText(typeEngine.fullText)
     }
 
+    override func viewDidAppear() {
+        inputField.becomeFirstResponder()
+    }
+
     override func controlTextDidChange(obj: NSNotification) {
         typeEngine.updateCurrentInput(inputField.stringValue)
     }
