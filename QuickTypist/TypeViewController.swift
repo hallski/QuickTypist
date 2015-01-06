@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class TypeViewController: NSViewController, NSTextFieldDelegate {
+class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDelegate {
     @IBOutlet var textView: NSTextView!
     @IBOutlet weak var inputField: NSTextField!
     @IBOutlet weak var timeLeftLabel: NSTextField!
@@ -19,6 +19,8 @@ class TypeViewController: NSViewController, NSTextFieldDelegate {
     init?(typeEngine: TypeEngine) {
         self.typeEngine = typeEngine
         super.init(nibName: "TypeViewController", bundle: NSBundle.mainBundle())
+
+        typeEngine.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -27,16 +29,18 @@ class TypeViewController: NSViewController, NSTextFieldDelegate {
 
     override func viewDidLoad() {
         inputField.delegate = self
+        textView.insertText(typeEngine.fullText)
     }
 
     override func controlTextDidChange(obj: NSNotification) {
-        let text = inputField.stringValue
+        typeEngine.updateCurrentInput(inputField.stringValue)
+    }
 
-        if (!typeEngine.checkSpellingOfInputText(text)) {
-            inputField.textColor = NSColor.redColor()
-        } else {
-            inputField.textColor = NSColor.blackColor()
-        }
-        println("New text: \(inputField.stringValue)")
+    func typeEngine(TypeEngine, currentWordIsValid: Bool) {
+        inputField.textColor = currentWordIsValid ? NSColor.blackColor() : NSColor.redColor()
+    }
+
+    func typeEngine(TypeEngine, newWordStarted: String) {
+        inputField.stringValue = ""
     }
 }
