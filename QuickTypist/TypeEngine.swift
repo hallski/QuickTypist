@@ -2,7 +2,8 @@ import Foundation
 
 protocol TypeEngineDelegate {
     func typeEngine(TypeEngine, currentWordIsValid: Bool);
-    func typeEngine(TypeEngine, newWordStarted: String);
+    func typeEngineStartedNewWord(TypeEngine)
+    func typeEngineFinished(TypeEngine)
 }
 
 class TypeEngine {
@@ -18,9 +19,12 @@ class TypeEngine {
     }
 
     func updateCurrentInput(newWord: String) {
+        if (currentWordIndex == words.count) {
+            return
+        }
+
         if (newWord.hasSuffix(" ")) {
-            currentWordIndex++
-            delegate?.typeEngine(self, newWordStarted: words[currentWordIndex])
+            handleFinishedWord(newWord)
         } else {
             delegate?.typeEngine(self, currentWordIsValid: checkSpellingOfInputText(newWord))
         }
@@ -32,5 +36,13 @@ class TypeEngine {
         }
 
         return false
+    }
+
+    func handleFinishedWord(word: String) {
+        currentWordIndex++
+        delegate?.typeEngineStartedNewWord(self)
+        if (currentWordIndex == words.count) {
+            delegate?.typeEngineFinished(self)
+        }
     }
 }

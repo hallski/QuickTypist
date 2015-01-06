@@ -40,7 +40,11 @@ class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDeleg
         inputField.textColor = currentWordIsValid ? NSColor.blackColor() : NSColor.redColor()
     }
 
-    func typeEngine(TypeEngine, newWordStarted: String) {
+    func typeEngineStartedNewWord(TypeEngine) {
         inputField.stringValue = ""
+    }
+
+    func typeEngineFinished(_: TypeEngine) {
+        println("All done!")
     }
 }
