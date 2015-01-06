@@ -15,6 +15,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        let typeEngine = TypeEngine()
+        let typeViewController = TypeViewController(typeEngine: typeEngine)
+
+        self.window.contentViewController = typeViewController
         // Insert code here to initialize your application
     }
 
