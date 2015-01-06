@@ -50,5 +50,6 @@ class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDeleg
 
     func typeEngineFinished(_: TypeEngine) {
         println("All done!")
+        inputField.editable = false
     }
 }
