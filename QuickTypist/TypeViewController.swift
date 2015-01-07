@@ -29,7 +29,7 @@ class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDeleg
 
     override func viewDidLoad() {
         inputField.delegate = self
-        textView.insertText(typeEngine.fullText)
+        textView.insertText(join(" ", typeEngine.words))
     }
 
     override func viewDidAppear() {

@@ -10,12 +10,9 @@ class TypeEngine {
     var delegate: TypeEngineDelegate?
     var words: [String]!
     var currentWordIndex: Int = 0
-    var fullText: String {
-        return "This is some text that we should show the user whatever that might be it should be typed fast"
-    }
 
     init() {
-        words = fullText.componentsSeparatedByString(" ")
+        words = "This is some text that we should show the user whatever that might be it should be typed fast".componentsSeparatedByString(" ")
     }
 
     func updateCurrentInput(newWord: String) {
