@@ -29,7 +29,7 @@ class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDeleg
 
     override func viewDidLoad() {
         inputField.delegate = self
-        textView.insertText(join(" ", typeEngine.words))
+        textView.insertText(typeEngine.text)
     }
 
     override func viewDidAppear() {
@@ -50,6 +50,12 @@ class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDeleg
 
     func typeEngineFinished(_: TypeEngine) {
         println("All done!")
+        inputField.stringValue = ""
         inputField.editable = false
     }
+
+    func typeEngine(_: TypeEngine, missSpelledRange: Range<Int>) {
+        textView.textStorage?.setAttributes([NSForegroundColorAttributeName: NSColor.redColor()], range:NSRange(missSpelledRange))
+    }
+
 }
