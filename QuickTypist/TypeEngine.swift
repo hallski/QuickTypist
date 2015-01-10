@@ -1,20 +1,22 @@
 import Foundation
 
-protocol TypeEngineDelegate {
+public protocol TypeEngineDelegate {
     func typeEngine(TypeEngine, currentWordIsValid: Bool);
     func typeEngineStartedNewWord(TypeEngine)
     func typeEngineFinished(TypeEngine)
     func typeEngine(TypeEngine, missSpelledRange:Range<Int>)
 }
 
-class TypeEngine {
+public class TypeEngine {
+    public
+
     var delegate: TypeEngineDelegate?
     var text = "This is some text that we should show the user whatever that might be it should be typed fast"
     var words: [String]!
     var currentWordIndex: Int = 0
     var currentWordStart: String.Index
 
-    init() {
+    public init() {
         currentWordStart = text.startIndex
         words = text.componentsSeparatedByString(" ")
     }

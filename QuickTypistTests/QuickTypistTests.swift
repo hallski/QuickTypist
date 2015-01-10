@@ -8,6 +8,7 @@
 
 import Cocoa
 import XCTest
+import QuickTypist
 
 class QuickTypistTests: XCTestCase {
     
@@ -22,6 +23,7 @@ class QuickTypistTests: XCTestCase {
     }
     
     func testExample() {
+        let t = TypeEngine()
         // This is an example of a functional test case.
         XCTAssert(true, "Pass")
     }
