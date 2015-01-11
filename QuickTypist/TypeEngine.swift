@@ -26,7 +26,7 @@ public class TypeEngine {
         }
 
         if (newWord.hasSuffix(" ")) {
-            handleFinishedWord(newWord.substringWithRange(Range<String.Index>(start: newWord.startIndex, end: advance(newWord.startIndex, countElements(newWord) - 1))))
+            handleFinishedWord(newWord.stringByReplacingOccurrencesOfString(" ", withString: ""));
         } else {
             delegate?.typeEngine(self, currentWordIsValid: checkSpellingOfInputText(newWord))
         }
