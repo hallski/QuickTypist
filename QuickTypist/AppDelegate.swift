@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        let typeEngine = TypeEngine()
+        let typeEngine = TypeEngine("This is some text that we should show the user whatever that might be it should be typed fast")
         let typeViewController = TypeViewController(typeEngine: typeEngine)
 
         self.window.contentViewController = typeViewController

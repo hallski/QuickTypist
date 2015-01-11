@@ -8,15 +8,14 @@ public protocol TypeEngineDelegate {
 }
 
 public class TypeEngine {
-    public
-
     var delegate: TypeEngineDelegate?
-    var text = "This is some text that we should show the user whatever that might be it should be typed fast"
+    public var text: String
     var words: [String]!
     var currentWordIndex: Int = 0
     var currentWordStart: String.Index
 
-    public init() {
+    public init(_ text: String) {
+        self.text = text
         currentWordStart = text.startIndex
         words = text.componentsSeparatedByString(" ")
     }

@@ -22,10 +22,9 @@ class QuickTypistTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        let t = TypeEngine()
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testAcceptsTestToWorkWith() {
+        let t = TypeEngine("Test")
+        XCTAssertEqual("Test", t.text)
     }
     
     func testPerformanceExample() {
