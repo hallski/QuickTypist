@@ -13,7 +13,7 @@
 		401238341A5C7CAC00A9C81D /* QuickTypistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401238331A5C7CAC00A9C81D /* QuickTypistTests.swift */; };
 		4012383E1A5C7DA800A9C81D /* TypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4012383D1A5C7DA800A9C81D /* TypeViewController.swift */; };
 		401238401A5C7DC000A9C81D /* TypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4012383F1A5C7DC000A9C81D /* TypeViewController.xib */; };
-		401238421A5C7F7D00A9C81D /* TypeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401238411A5C7F7D00A9C81D /* TypeEngine.swift */; };
+		401238421A5C7F7D00A9C81D /* TypeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401238411A5C7F7D00A9C81D /* TypeData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		401238331A5C7CAC00A9C81D /* QuickTypistTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTypistTests.swift; sourceTree = "<group>"; };
 		4012383D1A5C7DA800A9C81D /* TypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
 		4012383F1A5C7DC000A9C81D /* TypeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeViewController.xib; sourceTree = "<group>"; };
-		401238411A5C7F7D00A9C81D /* TypeEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeEngine.swift; sourceTree = "<group>"; };
+		401238411A5C7F7D00A9C81D /* TypeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 				401238241A5C7CAC00A9C81D /* Images.xcassets */,
 				401238261A5C7CAC00A9C81D /* MainMenu.xib */,
 				401238201A5C7CAC00A9C81D /* Supporting Files */,
-				401238411A5C7F7D00A9C81D /* TypeEngine.swift */,
+				401238411A5C7F7D00A9C81D /* TypeData.swift */,
 			);
 			path = QuickTypist;
 			sourceTree = "<group>";
@@ -217,7 +217,7 @@
 			files = (
 				4012383E1A5C7DA800A9C81D /* TypeViewController.swift in Sources */,
 				401238231A5C7CAC00A9C81D /* AppDelegate.swift in Sources */,
-				401238421A5C7F7D00A9C81D /* TypeEngine.swift in Sources */,
+				401238421A5C7F7D00A9C81D /* TypeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

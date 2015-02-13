@@ -9,18 +9,33 @@
 import Foundation
 import Cocoa
 
-class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDelegate {
+func collectAttributedStringFromCurrentTypeData(data: TypeData) -> NSAttributedString {
+    var string = NSMutableAttributedString()
+    let aStrings = data.finishedWords.map({ (doneWord: DoneWord) -> NSAttributedString in
+        NSAttributedString(string: doneWord.word,
+                attributes: [NSForegroundColorAttributeName : doneWord.state == .Success ? NSColor.greenColor() : NSColor.redColor()])
+    })
+
+    for s in aStrings {
+        string.appendAttributedString(s)
+        string.appendAttributedString(NSAttributedString(string: " "))
+    }
+
+    string.appendAttributedString(NSAttributedString(string: " ".join(data.comingWords)))
+
+    return string
+}
+
+class TypeViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet var textView: NSTextView!
     @IBOutlet weak var inputField: NSTextField!
     @IBOutlet weak var timeLeftLabel: NSTextField!
 
-    let typeEngine: TypeEngine
+    var currentTypeData: TypeData
 
-    init?(typeEngine: TypeEngine) {
-        self.typeEngine = typeEngine
+    init?(_ words: [String]) {
+        self.currentTypeData = TypeData(finishedWords: [], comingWords: words, currentWord: "", currentWordCorrect: false)
         super.init(nibName: "TypeViewController", bundle: NSBundle.mainBundle())
-
-        typeEngine.delegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -29,7 +44,7 @@ class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDeleg
 
     override func viewDidLoad() {
         inputField.delegate = self
-        textView.insertText(typeEngine.text)
+        updateWithNewTypeData(currentTypeData)
     }
 
     override func viewDidAppear() {
@@ -37,25 +52,21 @@ class TypeViewController: NSViewController, NSTextFieldDelegate, TypeEngineDeleg
     }
 
     override func controlTextDidChange(obj: NSNotification) {
-        typeEngine.updateCurrentInput(inputField.stringValue)
+        let input = inputField.stringValue
+
+        updateWithNewTypeData(processInput(input, currentTypeData))
     }
 
-    func typeEngine(TypeEngine, currentWordIsValid: Bool) {
-        inputField.textColor = currentWordIsValid ? NSColor.blackColor() : NSColor.redColor()
-    }
+    func updateWithNewTypeData(newData: TypeData) -> () {
+        currentTypeData = newData
 
-    func typeEngineStartedNewWord(TypeEngine) {
-        inputField.stringValue = ""
-    }
+        if (currentTypeData.isDone) {
+            println("Done!")
+        }
 
-    func typeEngineFinished(_: TypeEngine) {
-        println("All done!")
-        inputField.stringValue = ""
-        inputField.editable = false
-    }
+        inputField.textColor = currentTypeData.currentWordCorrect ? NSColor.blackColor() : NSColor.redColor()
+        inputField.stringValue = currentTypeData.currentWord
 
-    func typeEngine(_: TypeEngine, missSpelledRange: Range<Int>) {
-        textView.textStorage?.setAttributes([NSForegroundColorAttributeName: NSColor.redColor()], range:NSRange(missSpelledRange))
+        textView.textStorage?.setAttributedString(collectAttributedStringFromCurrentTypeData(currentTypeData))
     }
-
 }

@@ -23,8 +23,6 @@ class QuickTypistTests: XCTestCase {
     }
     
     func testAcceptsTestToWorkWith() {
-        let t = TypeEngine("Test")
-        XCTAssertEqual("Test", t.text)
     }
     
     func testPerformanceExample() {
