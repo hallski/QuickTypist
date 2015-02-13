@@ -1,11 +1,3 @@
-//
-//  TypeViewController.swift
-//  QuickTypist
-//
-//  Created by Mikael Hallendal on 06/01/15.
-//  Copyright (c) 2015 Mikael Hallendal. All rights reserved.
-//
-
 import Foundation
 import Cocoa
 
@@ -34,7 +26,7 @@ class TypeViewController: NSViewController, NSTextFieldDelegate {
     var currentTypeData: TypeData
 
     init?(_ words: [String]) {
-        self.currentTypeData = TypeData(finishedWords: [], comingWords: words, currentWord: "", currentWordCorrect: false)
+        self.currentTypeData = TypeData(words: words)
         super.init(nibName: "TypeViewController", bundle: NSBundle.mainBundle())
     }
 
@@ -44,7 +36,7 @@ class TypeViewController: NSViewController, NSTextFieldDelegate {
 
     override func viewDidLoad() {
         inputField.delegate = self
-        updateWithNewTypeData(currentTypeData)
+        updateWithNewTypeData()
     }
 
     override func viewDidAppear() {
@@ -52,14 +44,11 @@ class TypeViewController: NSViewController, NSTextFieldDelegate {
     }
 
     override func controlTextDidChange(obj: NSNotification) {
-        let input = inputField.stringValue
-
-        updateWithNewTypeData(processInput(input, currentTypeData))
+        currentTypeData = processInput(inputField.stringValue, currentTypeData)
+        updateWithNewTypeData()
     }
 
-    func updateWithNewTypeData(newData: TypeData) -> () {
-        currentTypeData = newData
-
+    func updateWithNewTypeData() -> () {
         if (currentTypeData.isDone) {
             println("Done!")
         }

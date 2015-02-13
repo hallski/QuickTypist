@@ -16,10 +16,21 @@ public struct DoneWord {
 }
 
 public struct TypeData {
-    let finishedWords: [DoneWord]
+    let finishedWords: [DoneWord] = []
     let comingWords: [String]
-    let currentWord: String
-    let currentWordCorrect: Bool
+    let currentWord: String = ""
+    let currentWordCorrect: Bool = false
+
+    init (words: [String]) {
+        self.comingWords = words
+    }
+
+    init (finishedWords: [DoneWord], comingWords: [String], currentWord: String, currentWordCorrect: Bool) {
+        self.finishedWords = finishedWords
+        self.comingWords = comingWords
+        self.currentWord = currentWord
+        self.currentWordCorrect = currentWordCorrect
+    }
 
     var isDone: Bool {
         return comingWords == []
