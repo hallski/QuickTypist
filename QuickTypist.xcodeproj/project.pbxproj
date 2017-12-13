@@ -164,9 +164,11 @@
 				TargetAttributes = {
 					4012381C1A5C7CAC00A9C81D = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0830;
 					};
 					4012382C1A5C7CAC00A9C81D = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = 4012381C1A5C7CAC00A9C81D;
 					};
 				};
@@ -336,6 +338,7 @@
 				INFOPLIST_FILE = QuickTypist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -347,6 +350,7 @@
 				INFOPLIST_FILE = QuickTypist/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -366,6 +370,7 @@
 				INFOPLIST_FILE = QuickTypistTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickTypist.app/Contents/MacOS/QuickTypist";
 			};
 			name = Debug;
@@ -382,6 +387,7 @@
 				INFOPLIST_FILE = QuickTypistTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickTypist.app/Contents/MacOS/QuickTypist";
 			};
 			name = Release;
@@ -405,6 +411,7 @@
 				401238391A5C7CAC00A9C81D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4012383A1A5C7CAC00A9C81D /* Build configuration list for PBXNativeTarget "QuickTypistTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +420,7 @@
 				4012383C1A5C7CAC00A9C81D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -11,7 +11,7 @@ public struct DoneWord {
 
     init(_ string: String, correctString: String) {
         word = correctString
-        state = checkSpelling(string, correctString) ? .Success : .Failure
+        state = checkSpelling(string, word: correctString) ? .Success : .Failure
     }
 }
 
@@ -37,7 +37,7 @@ public struct TypeData {
     }
 }
 
-public func processInput(input: String, data: TypeData) -> TypeData {
+public func processInput(_ input: String, data: TypeData) -> TypeData {
     if (data.comingWords == []) {
         return data;
     }
@@ -46,15 +46,15 @@ public func processInput(input: String, data: TypeData) -> TypeData {
         var finishedWords = data.finishedWords
         var comingWords = data.comingWords
 
-        finishedWords += [DoneWord(input.stringByReplacingOccurrencesOfString(" ", withString: ""), correctString: comingWords[0])]
-        comingWords.removeAtIndex(0)
+        finishedWords += [DoneWord(input.replacingOccurrences(of: " ", with: ""), correctString: comingWords[0])]
+        comingWords.remove(at: 0)
 
         return TypeData(finishedWords: finishedWords, comingWords: comingWords, currentWord: "", currentWordCorrect: false)
     } else {
-        return TypeData(finishedWords: data.finishedWords, comingWords: data.comingWords, currentWord: input, currentWordCorrect: checkSpelling(input, data.comingWords[0]))
+        return TypeData(finishedWords: data.finishedWords, comingWords: data.comingWords, currentWord: input, currentWordCorrect: checkSpelling(input, word: data.comingWords[0]))
     }
 }
 
-func checkSpelling(input: String, word: String) -> Bool {
+func checkSpelling(_ input: String, word: String) -> Bool {
     return word.hasPrefix(input)
 }

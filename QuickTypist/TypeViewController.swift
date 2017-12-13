@@ -1,19 +1,19 @@
 import Foundation
 import Cocoa
 
-func collectAttributedStringFromCurrentTypeData(data: TypeData) -> NSAttributedString {
-    var string = NSMutableAttributedString()
+func collectAttributedStringFromCurrentTypeData(_ data: TypeData) -> NSAttributedString {
+    let string = NSMutableAttributedString()
     let aStrings = data.finishedWords.map({ (doneWord: DoneWord) -> NSAttributedString in
         NSAttributedString(string: doneWord.word,
-                attributes: [NSForegroundColorAttributeName : doneWord.state == .Success ? NSColor.greenColor() : NSColor.redColor()])
+                attributes: [NSForegroundColorAttributeName : doneWord.state == .Success ? NSColor.green : NSColor.red])
     })
 
     for s in aStrings {
-        string.appendAttributedString(s)
-        string.appendAttributedString(NSAttributedString(string: " "))
+        string.append(s)
+        string.append(NSAttributedString(string: " "))
     }
 
-    string.appendAttributedString(NSAttributedString(string: " ".join(data.comingWords)))
+    string.append(NSAttributedString(string: data.comingWords.joined(separator: " ")))
 
     return string
 }
@@ -27,7 +27,7 @@ class TypeViewController: NSViewController, NSTextFieldDelegate {
 
     init?(_ words: [String]) {
         self.currentTypeData = TypeData(words: words)
-        super.init(nibName: "TypeViewController", bundle: NSBundle.mainBundle())
+        super.init(nibName: "TypeViewController", bundle: Bundle.main)
     }
 
     required init?(coder: NSCoder) {
@@ -43,17 +43,17 @@ class TypeViewController: NSViewController, NSTextFieldDelegate {
         inputField.becomeFirstResponder()
     }
 
-    override func controlTextDidChange(obj: NSNotification) {
-        currentTypeData = processInput(inputField.stringValue, currentTypeData)
+    override func controlTextDidChange(_ obj: Notification) {
+        currentTypeData = processInput(inputField.stringValue, data: currentTypeData)
         updateWithNewTypeData()
     }
 
     func updateWithNewTypeData() -> () {
         if (currentTypeData.isDone) {
-            println("Done!")
+            print("Done!")
         }
 
-        inputField.textColor = currentTypeData.currentWordCorrect ? NSColor.blackColor() : NSColor.redColor()
+        inputField.textColor = currentTypeData.currentWordCorrect ? NSColor.black : NSColor.red
         inputField.stringValue = currentTypeData.currentWord
 
         textView.textStorage?.setAttributedString(collectAttributedStringFromCurrentTypeData(currentTypeData))
